@@ -7,13 +7,14 @@ import Quality
 data Tunel = Tun [Link] deriving (Eq, Show)
 
 newT :: [Link] -> Tunel
-newT [] = error "El Tunel no contiene ningun link"
-newT links = Tun links
+newT links 
+    | length links > 0 = Tun links
+    | otherwise = error "No es posible establecer un tunel sin links."
 connectsT :: City -> City -> Tunel -> Bool-- indica si éste túnel conecta estas dos ciudades distintas
 connectsT cityA cityB (Tun links)
-    | null links           = False 
-    | length links == 1    = linksL cityA cityB  (head links)
-    | otherwise            = (firstVerify cityA cityB links && lastVerify cityA cityB links)
+    | null links = False 
+    | length links == 1  = linksL cityA cityB  (head links)
+    | otherwise = (firstVerify cityA cityB links && lastVerify cityA cityB links)
 
 firstVerify :: City -> City -> [Link] -> Bool
 firstVerify cityA cityB links = connectsL cityA (head links) && not( connectsL cityA (links !!1)) 
