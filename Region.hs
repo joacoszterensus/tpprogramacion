@@ -83,10 +83,8 @@ findDelay cityA cityB (t:ts)
 
 availableCapacityForR :: Region -> City -> City -> Int -- indica la capacidad disponible entre dos ciudades
 availableCapacityForR region@(Reg _ links tuneles) cityA cityB 
-    | not (linkedR region cityA cityB) = error "Las ciudades no estan enlazadas."
-    | capacidadInicial >= cantidadUsada 
-     = capacidadInicial - cantidadUsada
-    | otherwise = error "Chequeemos"
+    | not (linkedR region cityA cityB) = error "No es posible conectar esas ciudades."
+    | otherwise = capacidadInicial - cantidadUsada
     where 
         targetLink = (capturarL links cityA cityB)
         capacidadInicial = capacityL targetLink
