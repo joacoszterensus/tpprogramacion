@@ -8,35 +8,34 @@ public class Queue {
 	public List<Baulera> objects = new ArrayList<>();
 	
 	public Queue() {
-		Baulera bauleraVacia = new WithOut(objects);
+		Baulera bauleraVacia = new WithOut();
 		objects.add(bauleraVacia);	
 	}
 	public boolean isEmpty() {
-		return objects.isEmpty();
+		return objects.size()==1;
 	}
 
-	public Queue add( Baulera cargo ) {
-		objects.add(cargo);
-		return this;
+	public Queue add(Object a) {
+        objects.add(new With(a));
+        return this;
 	}
-
+	
 	public Object take() {
-		Baulera.take();
-	}
+        return objects.get(0).take();
+    }
 
-	public Object head() {
-		if (isEmpty()) {
-			throw new Error("Queue is empty");
-		} else {
-			return objects.get(0);
-		}
-	}
+    public Object head() {
+        return objects.get(0).head();
+    }
 
-	public int size() {
-		return objects.size();
-	}
-
+    public int size() {
+        return objects.size()-1;
+    }
 }
+
+
+
+
 
 
 
