@@ -1,41 +1,47 @@
 package queue;
 
-import java.util.List;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Queue {
-	
-	public List<Baulera> objects = new ArrayList<>();
-	
+
+	public  List<Object> queue = new ArrayList<Object>(); 
+	private List<Type> WhichElement=new ArrayList<Type>();
+
 	public Queue() {
-		Baulera bauleraVacia = new WithOut();
-		objects.add(bauleraVacia);	
+		Type ElementNull=new WithoutElement();
+
+		WhichElement.add(ElementNull);
 	}
+
+
 	public boolean isEmpty() {
-		return objects.size()==1;
+		return queue.isEmpty();
 	}
 
-	public Queue add(Object a) {
-        objects.add(new With(a));
-        return this;
+	public Queue add( Object x ) {
+		Type Element=new WithElement();
+		queue.add(x);
+		Element.setElement(queue);
+
+		WhichElement.add(Element);
+		return this;
 	}
-	
+
 	public Object take() {
-        return objects.get(0).take();
-    }
+		
+		return 	WhichElement.get(queue.size()).take();
 
-    public Object head() {
-        return objects.get(0).head();
-    }
+	}
 
-    public int size() {
-        return objects.size()-1;
-    }
+	public Object head() {
+		return WhichElement.get(queue.size()).head();
+
+	}
+
+	public int size() {
+        return queue.size();
+	}
+
 }
-
-
-
-
-
-
-
