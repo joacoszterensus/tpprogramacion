@@ -34,7 +34,7 @@ public class Queue {
 	}
 
 	public int size() {
-        return queue.size();
+        	return queue.size();
 	}
 	private Type lastElementOfWhichElement() {
 		return WhichElement.get(size());
