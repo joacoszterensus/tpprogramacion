@@ -1,6 +1,7 @@
 package queue;
 
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Queue {
 		WhichElement.add(new WithoutElement());
 	}
 	public boolean isEmpty() {
-		return queue.isEmpty();
+		return WhichElement.get(size()).isEmpty();
 	}
 
 	public Queue add( Object elementToAdd ) {
@@ -25,20 +26,15 @@ public class Queue {
 	}
 
 	public Object take() {
-		return lastElementOfWhichElement().take();
+		return 	WhichElement.get(size()).take();
 	}
 	
 	public Object head() {
-		return lastElementOfWhichElement().head();
+		return 	WhichElement.get(size()).head();
 
 	}
 
 	public int size() {
-        	return queue.size();
+        	return WhichElement.get(WhichElement.size()-1).size();
 	}
-	private Type lastElementOfWhichElement() {
-		return WhichElement.get(size());
 	}
-
-
-}
