@@ -7,41 +7,38 @@ import java.util.List;
 public class Queue {
 
 	public  List<Object> queue = new ArrayList<Object>(); 
-	private List<Type> WhichElement=new ArrayList<Type>();
+	private List<Type> WhichElement = new ArrayList<Type>();
 
 	public Queue() {
-		Type ElementNull=new WithoutElement();
-
-		WhichElement.add(ElementNull);
+		WhichElement.add(new WithoutElement());
 	}
-
-
 	public boolean isEmpty() {
 		return queue.isEmpty();
 	}
 
-	public Queue add( Object x ) {
-		Type Element=new WithElement();
-		queue.add(x);
+	public Queue add( Object elementToAdd ) {
+		Type Element = new WithElement();
+		queue.add(elementToAdd);
 		Element.setElement(queue);
-
 		WhichElement.add(Element);
 		return this;
 	}
 
 	public Object take() {
-		
-		return 	WhichElement.get(queue.size()).take();
-
+		return lastElementOfWhichElement().take();
 	}
-
+	
 	public Object head() {
-		return WhichElement.get(queue.size()).head();
+		return lastElementOfWhichElement().head();
 
 	}
 
 	public int size() {
         return queue.size();
 	}
+	private Type lastElementOfWhichElement() {
+		return WhichElement.get(size());
+	}
+
 
 }
